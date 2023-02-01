@@ -12,7 +12,7 @@ void main(List<String> args) {
   }
 
   String content = fontsConfigFile.readAsStringSync();
-  List<dynamic> icons = json.decode(content);
+  final icons = json.decode(content);
 
   List<String> generatedOutput = [
     "library flutter_feather_icons;\n",
@@ -22,7 +22,7 @@ void main(List<String> args) {
     "class FeatherIcons {\n"
   ];
 
-  for (Map<String, dynamic> icon in icons as Iterable<Map<String, dynamic>>) {
+  for (Map<String, dynamic> icon in icons as List<dynamic>) {
     icon.forEach((String iconName, dynamic iconUnicode) => generatedOutput.add(
         "static const IconData ${ReCase(iconName).camelCase} = const FeatherIconData(0x$iconUnicode);\n"));
   }
